@@ -1,0 +1,22 @@
+{
+  "manifest_version": 2,
+  "name": "Hacked?",
+  "version": "0.1",
+  "options_page": "html/options.html",
+  "background" : {
+    "scripts": ["javascript/jquery.js", "javascript/bootstrap.js", "javascript/background.js"]
+  },
+  "icons": {
+    "48": "images/hacked.png"
+  },
+  "permissions": [
+    "tabs",
+    "storage",
+    "alarms",
+    "https://haveibeenpwned.com/"
+  ],
+  "browser_action": {
+    "default_icon": "images/hacked.png",
+    "default_popup": "html/safePopup.html"
+  }
+}
