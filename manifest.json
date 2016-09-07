@@ -7,7 +7,9 @@
     "scripts": ["javascript/jquery.js", "javascript/bootstrap.js", "javascript/background.js"]
   },
   "icons": {
-    "48": "images/hacked.png"
+    "16": "images/hacked.png",
+    "48": "images/hacked.png",
+    "128": "images/hacked.png"
   },
   "permissions": [
     "tabs",
