@@ -1,0 +1,26 @@
+#main {
+  margin: 40px auto 0;
+  width: 450px;
+  box-sizing: border-box;
+}
+
+header {
+  margin-bottom: 20px;
+}
+
+img.logo {
+  height: 80px;
+}
+
+.well {
+  background-color: #fbfbfb;
+  margin-bottom: 5px;
+}
+
+.options-form{
+  overflow: hidden;
+}
+
+li {
+  margin-left: 10px;
+}

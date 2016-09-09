@@ -1,26 +1,106 @@
+// TODO: More thorough email verification
+function process_form(e) {
+  e.preventDefault();
+  var error = false;
+  var validAccounts = [];
+  var badAccounts = [];
+  var errorList = $('ul.errorMessages');
+  errorList.empty();
 
-function save_options() {
-  var email = document.getElementById('email').value;
-  chrome.storage.sync.set({
-    emailAddress: email,
-  }, function() {
-    // Update status to let user know options were saved.
-    var status = document.getElementById('status');
-    status.textContent = 'Options saved.';
-    setTimeout(function() {
-      status.textContent = '';
-    }, 750);
+  $('#accounts').children('div').children('input').each(function(){
+    if (this.id.match('^email')){
+      if (this.value !== '' && this.value.indexOf('@') > -1 && this.value.indexOf('.') > -1){
+         validAccounts.push(this.value);
+      }
+      else if (this.value !== ''){
+        errorList.append( "<li><span><strong>Error: </strong></span>" + this.value + " is not a valid email address.</li>");
+        badAccounts.push(this.value);
+        error = true;
+      }
+    }
   });
+
+  if (validAccounts.length === 0 && badAccounts.length === 0)
+  {
+    errorList.append("<li><span><strong>Error: </strong></span>No email address was provided.</li>");
+    error = true;
+  }
+
+  if (!error)
+    save_values(validAccounts);
+  else
+    errorList.show()
+}
+
+function save_values(accounts) {
+
+  //First clear any existing values
+  chrome.storage.sync.clear();
+
+  var accountNum = 0;
+  emails = {}
+
+  for (accountNum; accountNum < accounts.length; accountNum++){
+    var storeName = 'account' + accountNum;
+    emails[storeName] = accounts[accountNum];
+  }
+  chrome.storage.sync.set({emails}, function() {
+      setTimeout(function() {
+        status.textContent = '';
+      }, 750);
+    });
+
+  closeOptionsTab();
 }
 
 
 function restore_options() {
-  chrome.storage.sync.get({
-    emailAddress: null,
-  } ,function(items) {
-    document.getElementById('email').value = items.emailAddress;
+  chrome.storage.sync.get('emails', function(items){
+    try {
+      var index = 0;
+      for (var account in items.emails) {
+        if (index > 0){
+          $('#addMore').click();
+        }
+        var pageId = 'email' + index;
+
+        // If email exists place in the next field
+        if (items.emails[account] !== undefined){
+          document.getElementById(pageId).value = items.emails[account];
+          index++;
+        }
+      }
+     }
+     // This is needed for the first time the options page is loaded (after install)
+     catch (e){
+       ;
+     }
   });
 }
+
+
+function closeOptionsTab(){
+  chrome.tabs.getCurrent(function(tab) {
+    chrome.tabs.remove(tab.id, function() { });
+  });
+}
+
+// Load More Email Fields
+$(function(){
+	var maxFields = 5;
+	var currentNumFields = 1;
+	$('#addMore').click(function(e){
+		e.preventDefault();
+		if (currentNumFields < maxFields){
+			currentNumFields++;
+			var num = currentNumFields - 1;
+			var emailNum = 'email' + num;
+			var newHTML = '<div class="col-sm-7 col-sm-offset-3" style="padding-bottom:10px"><input type="text" class="form-control input-normal" id="' + emailNum + '" /></div>';
+			$('#accounts').append(newHTML);
+		}
+	});
+});
+
 document.addEventListener('DOMContentLoaded', restore_options);
 document.getElementById('save').addEventListener('click',
-    save_options);
+    process_form);

@@ -12,11 +12,10 @@ Icon Creation
 */
 
 function onInstalled(){
-  chrome.tabs.create({'url': 'chrome://extensions/?options=' + chrome.runtime.id });
+  chrome.browserAction.setPopup({popup: 'html/install.html' });
   alarmInfo = {"when": Date.now() + 0.1, "periodInMinutes": 10.00 };
   chrome.alarms.create("dailyTimer", alarmInfo);
 }
-
 
 function onAlarm(alarm) {
   getBreachStatus();
@@ -51,6 +50,7 @@ function makeAJAXCall(email){
     }
   });
 }
+
 
 chrome.runtime.onInstalled.addListener(onInstalled);
 chrome.alarms.onAlarm.addListener(onAlarm);

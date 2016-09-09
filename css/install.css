@@ -1,0 +1,31 @@
+body {
+  font-family: 'Open Sans', sans-serif;
+  font-weight: 200;
+  color: #444;
+  padding: 0;
+  margin: 0;
+  min-width: 300px;
+  position: relative;
+  font-size: 16px;
+  background: #f5f5f5;
+}
+
+
+header {
+  padding: 5px 15px 5px 15px;
+  height: 28px;
+  width: 100%;
+  line-height: 19px;
+  background: #134960;
+  color: #fff;
+}
+
+.well {
+  width: '250px';
+  background-color: #fbfbfb;
+  margin-bottom: 5px;
+}
+
+.options-form{
+  overflow: hidden;
+}
