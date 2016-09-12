@@ -49,6 +49,9 @@ function save_values(accounts) {
         status.textContent = '';
       }, 750);
     });
+  
+  //Send a message to background.js to check breach status for new/updated emails
+  chrome.runtime.sendMessage('accountUpdate');
 
   closeOptionsTab();
 }
