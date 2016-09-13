@@ -1,29 +1,54 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Hacked? Extension Options></title> 
+  <title>Hacked? Extension Options></title>
   <link rel="stylesheet" href="../css/bootstrap.css">
+  <link rel="stylesheet" href="../css/options.css">
 </head>
-<body>
-  <div class="col-sm-5">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <strong>Settings</strong>
-    </div>
-    <div class="panel-body">
-      <label class="col-sm-2 control-label">Email</label>
-      <div class="col-sm-9">
-        <input type="text" class="form-control" id="email"/>
+<body style="background-color:#f2f2f2">
+  <div class="container">
+    <div class="row" id="main">
+      <header class="text-center">
+        <img src="/images/hacked.png" alt="Logo" class="logo">
+      </header>
+
+      <div class="well options-b">
+        <div class="lead text-muted">Options</div>
+          <hr>
+
+          <form class="form-horizontal options-form">
+
+            <ul class="errorMessages alert alert-danger" style="display: none"></ul>
+            <div class="form-group">
+
+              <div class="col-sm-3">
+		<label>Email:</label>
+              </div>
+
+              <div id="accounts">
+                <div class="col-sm-7" style="padding-bottom: 10px">
+                  <input type="text" class="form-control input-normal" id="email0" />
+                </div>
+              </div>
+
+              <div class="col-sm-2">
+                <button class="btn btn-default" id="addMore">+</button>
+              </div>
+
+	        <div class="col-sm-6 col-sm-offset-3">
+                <p class="help-block">To add an email click +</p>
+              </div>
+            </div>
+            <div class="col-sm-3 col-sm-offset-9">
+              <button class="btn pull-right" style="color: #ffffff; background-color: #134960" id="save">Save</button>
+            </div>
+          </form>
+
       </div>
-      <div id="status"></div>
-      <div class="col-sm-3">
-      	<button class="btn pull-right" id="save">Save</button>
-      </div>
-    </div>
+   </div>
   </div>
-  </div>
-<script src="../javascript/options.js"></script>
+  <script src="../javascript/jquery.js"></script>
+  <script src="../javascript/bootstrap.js"></script>
+  <script src="../javascript/options.js"></script>
 </body>
-
 </html>
-

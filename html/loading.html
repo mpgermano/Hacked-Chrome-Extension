@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>Hacked? Safe></title>
+  <title>Hacked? Loading Status></title>
   <link rel="stylesheet" href="../css/bootstrap.css">
   <link rel="stylesheet" href="../css/popup.css">
 </head>
@@ -12,12 +12,14 @@
   </header>
 
   <div class="well">
-    <span class="glyphicon glyphicon-thumbs-up" aria-hidden="true"></span>
-    <span class="sr-only">Safe</span>
-    All of your accounts are safe!
-  </div>
+    <div class="loader"></div>
+    <p>Getting Update...</p>
+    <a id='safe' style="display: none" href='/html/safePopup.html'>try</a>
+    <a id='breach' style="display: none" href='/html/breachedPopup.html'>try</a>
 
+  </div>
     <script src="../javascript/jquery.js"></script>
     <script src="../javascript/bootstrap.js"></script>
+    <script src="../javascript/popup.js"></script> 
 </body>
 </html>
